@@ -14,7 +14,14 @@
 
     <div class="col-sm-9 padding-right">
         <div class="features_items"><!--features_items-->
-                <h2 class="title text-center">Товар з категорії...</h2>
+              {{--@if($HTTP_GET_VARS == 1)--}}
+                {{--<h2 class="title text-center">Товар з категорії...</h2>--}}
+              {{--@endif    --}}
+            {{--@foreach($category as $k => $v)--}}
+                {{--@if($HTTP_GET_VARS == 1)--}}
+                    <h2 class="title text-center">Товар з категорії...</h2>
+                {{--@endif--}}
+            {{--@endforeach--}}
                 @foreach($good as $k => $go)
                     <div class="col-sm-4">
                         <div class="product-image-wrapper">
@@ -27,7 +34,7 @@
                                         <p>{{$go->name}}</p>
                                     </a>
 
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                    <a href="{{route('basket', array('id' => $go->id))}}" methods="post" data-id="{{$go->id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                 </div>
                             </div>
                         </div>

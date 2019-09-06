@@ -2,6 +2,11 @@
 
  $('#sl2').slider();
 
+ // $('.add-to-cart').on('click', function (e) {
+	//  e.preventDefault();
+	//  var id = $(this).data('id')
+ // })
+
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
 	};	

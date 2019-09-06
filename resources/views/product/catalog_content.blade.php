@@ -19,9 +19,9 @@
                                     <span>{{$go->price}}</span>
                                     <button type="button" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
-                                        В корзину
+                                   <a href="{{route('basket',array('id'=>$go->id))}}" data-id="{{$go->id}}" methods="post">В корзину</a>
                                     </button>
-                                </span>
+                            </span>
 
                         </div><!--/product-information-->
                     </div>

@@ -19,8 +19,8 @@ class IndexController extends Controller
             $category = Category::with('good')->get();
             $good = Good::with('category')->get();;
 
-            $filters = DB::table('goods')->distinct()->get(['filter']);
-
+            $filters = DB::table('goods')->distinct()->pluck('filter');
+//dd($filters);
            $filters = htmlspecialchars($filters);
 
             //$basket = Basket::all();
@@ -28,6 +28,7 @@ class IndexController extends Controller
 //               $category = Category::with('good')->where('category_id', 2)->get();
 //           }
 
+//           dd($good);
            $data = [
               //'title' => 'Інтернет-магазин',
               'category' => $category,

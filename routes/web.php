@@ -25,11 +25,13 @@ Route::group([], function (){
     Route::get('/goods{id}',['uses'=>'GoodsController@execute'])->name('good');
 
     Route::match(['get','post','delete'],'/basket',['uses'=>'BasketController@execute'])->name('basket');
-    Route::match(['get','post','delete'],'/basket/add',['uses'=>'BasketAddController@execute'])->name('basketadd');
+//    Route::get('/baskett{id}',['uses'=>'Basket2Controller@execute'])->name('basket');
+    Route::match(['get','post','delete'],'/basketadd',['uses'=>'BasketAddController@execute'])->name('basketadd');
 
   //  Route::get('/entrance',['uses'=>'EntranceController@execute', 'as'=>'entrance']);
 
     Route::match(['get','post'],'/login',['uses'=>'LoginController@execute'])->name('login');
+    Route::match(['get','post'],'/login2',['uses'=>'Login2Controller@execute'])->name('login2');
 
     Route::get('/category{id}',['uses'=>'CategoryController@execute'])->name('category');
 

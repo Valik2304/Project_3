@@ -20,6 +20,29 @@ class Good extends Model
 
     }
 
+    public function AddGoods($go, $qty = 1){
+//        dd('WORKED!');
+
+        if (isset($_SESSION['cart'][$go->id])){
+            $_SESSION['cart'][$go->id]['qty'] =+ $qty;
+        }else{
+            $_SESSION['cart'][$go->id] = [
+                'id' => $go->id,
+                'qty' => $qty,
+                'name' => $go->name,
+                'image' => $go->image,
+                'price' => $go->price,
+            ];
+        }
+//        dd($_COOKIE['cart'][$go->id]['price']);
+        $_SESSION['cart']['id']['qty'] = isset($_SESSION['cart']['id']['qty']) ? $_SESSION['cart']['id']['qty'] + $qty: $qty;
+//        dd($_COOKIE['cart']['id']);
+//        $_COOKIE['cart']['id']['sum'] = isset($_COOKIE['cart'][$go->id]['price'])? $_COOKIE['cart'][$go->id]['price'] + $qty * $go->price: $qty * $go->price;
+
+//        dd($_COOKIE['cart']['id']['sum']);
+    }
+
+
 
 
 

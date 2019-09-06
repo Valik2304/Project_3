@@ -20,7 +20,8 @@
 
 </head><!--/head-->
 
-<body>
+<body background="anypics.ru-11573_1366x768.jpg">
+
 <header id="header"><!--header-->
 
     @yield('header')
@@ -47,7 +48,8 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2019</p>
+                <p class="pull-left">Copyright © 2019. </p>
+                <p class="pull-center">Інтепнет-магазин GVCorporation.</p>
             </div>
         </div>
     </div>

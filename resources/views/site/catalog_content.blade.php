@@ -41,7 +41,7 @@
                                     <p>{{$go->name}}</p>
                                 </a>
 
-                                <a href="{{route('basketadd')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
+                                <a href="{{route('basket', array('id'=>$go->id))}}" data-id="{{$go->id}}" methods="post" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>В корзину</a>
                             </div>
                         </div>
                     </div>

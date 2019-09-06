@@ -14,38 +14,41 @@ class LoginController extends Controller
 
 
         if ($request->isMethod('post')){
+
             $input = $request->except('_token');
 
             $messages = [
                 'required' => 'Поле :attribute обов"язкове до заповнення',
-                'unique' => 'Поле :attribute повинно бути унікальним'
+                'unique' => 'Поле :attribute повинно бути унікальним',
+                'min' => 'Поле :attribute повинно містити не менше 3 символів'
             ];
 
             $validator = Validator::make($input,[
 
                 'name' => 'required|max:255',
                 'email' =>'required|max:255',
-                'password' => 'required|max:255'
+                'password' => 'required|max:255|min:3'
 
             ],$messages);
 
             if ($validator->fails()){
-                return redirect()->route('login')->withErrors($validator)->withInput();
+                return redirect()->route('login')->withErrors($validator)->withInput()->with('status', 'Щось пішло не так. Спробуйте знову!');
             }
+
+            $inputs = md5($input['password'].'ugr7erhgfhcg7we');
 
             $new_user = New_user::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'password' =>$input['password']
+                'password' =>$inputs
             ]);
 
             if ($new_user->save()){
-                return redirect('/')->with('status', "Ви успішно зареєструвались. Приємних покупок");
+                return redirect('/')->with('status', "Ви успішно зареєструвались. Приємних покупок!");
 
             }
-            if (with('status', "Ви успішно зареєструвались. Приємних покупок")){
-                route('basketadd')->isActive;
-            }
+
+
 
         }
 
@@ -56,7 +59,7 @@ class LoginController extends Controller
         if (view()->exists('Account.login')){
 
             $data = [
-                'title' => 'Вхід в свій акаунт'
+                'title' => 'Вхід в акаунт'
             ];
 
             return view('Account.login', $data);
