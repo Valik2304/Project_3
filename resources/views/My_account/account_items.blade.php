@@ -8,5 +8,5 @@
 
 @section('catalog_content')
 
-    @include('Account.login_content')
+    @include('My_account.my_account_items')
 @endsection

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function execute(Request $request, $HTTP_GET_VARS){
+    public function execute(Request $request, $id){
 
         if (view()-> exists('site.byubyuuy')){
 
@@ -21,28 +21,26 @@ class CategoryController extends Controller
                 $good->where('name', $request->name);
 
             }
-            $good = $good->get();// трохи не зрозумілий код;
-
-
-
+            $good = $good->get()->where('category_id', $id);// трохи не зрозумілий код;
+//$good = DB::table('goods')->where('category_id','=', $id);dd($good);
 
 //             if ($HTTP_GET_VARS ==1):
 //                $good = Good::get()->where('category_id', '=', 1);
 
-            if ($HTTP_GET_VARS ==1):
-                $good = DB::table('goods')->where('category_id', '=', 1)->get();
-            elseif ($HTTP_GET_VARS == 2):
-                $good = DB::table('goods')->where('category_id', '=', 2)->get();
-            elseif ($HTTP_GET_VARS == 3):
-                $good = DB::table('goods')->where('category_id', '=', 3)->get();
-            elseif ($HTTP_GET_VARS == 4):
-                $good = DB::table('goods')->where('category_id', '=', 4)->get();
-            elseif ($HTTP_GET_VARS == 5):
-                $good = DB::table('goods')->where('category_id', '=', 5)->get();
-            elseif ($HTTP_GET_VARS == 6):
-                $good = DB::table('goods')->where('category_id', '=', 6)->get();
-            endif;
-//            dd($good);
+//            if ($id ==1):
+//                $good = DB::table('goods')->where('category_id', '=', 1)->get();
+//            elseif ($id == 2):
+//                $good = DB::table('goods')->where('category_id', '=', 2)->get();
+//            elseif ($id == 3):
+//                $good = DB::table('goods')->where('category_id', '=', 3)->get();
+//            elseif ($id == 4):
+//                $good = DB::table('goods')->where('category_id', '=', 4)->get();
+//            elseif ($id == 5):
+//                $good = DB::table('goods')->where('category_id', '=', 5)->get();
+//            elseif ($id == 6):
+//                $good = DB::table('goods')->where('category_id', '=', 6)->get();
+//            endif;
+            //dd($good);
 //            $data = [
 //                'title' => 'Товар з категорії',
 //                'category' => $category,

@@ -15,12 +15,13 @@
                     <div class="col-sm-7">
                         <div class="product-information"><!--/product-information-->
                             <h2>{{$go->name}}</h2>
+                            <p>Web ID: 1089772</p>
+                            <img src="images/product-details/rating.png" alt="" />
+
+                            <br>
                             <span>
-                                    <span>{{$go->price}}</span>
-                                    <button type="button" class="btn btn-fefault cart">
-                                        <i class="fa fa-shopping-cart"></i>
-                                   <a href="{{route('basket',array('id'=>$go->id))}}" data-id="{{$go->id}}" methods="post">В корзину</a>
-                                    </button>
+                                   <span>{{$go->price}}</span>
+                                   <a href="{{route('basket',array('id'=>$go->id))}}" data-id="{{$go->id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart" style="color: #4c110f"><h7> В корзину</h7></i></a>
                             </span>
 
                         </div><!--/product-information-->

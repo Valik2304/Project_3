@@ -10,39 +10,34 @@ use App\Good;
 class GoodsController extends Controller
 {
 
-    public function execute(Request $request, $HTTP_GET_VARS){
-//походу тут треба механізм фільтрації робити, тобто перевірку який саме товар вибрано;
-//        dd($HTTP_GET_VARS);
-//        if ($HTTP_GET_VARS == 3):
-//           echo "працює я вибрав товар з  айді-3!";
-//        else: echo "товар з айді НЕ 3!";
-//        endif;
-//        die();
+    public function execute(Request $request,  $id){
 
         if (view()->exists('product.goods1')){
 
             $category = Category::with('good')->get();
 //            $good = Good::get()->where('id', '3'); //можна скористатись і за потрібною умовою витягнути вже відфільтровані;
+//            if ($id == 1):$good = Good::get()->where('id', '1');
+//            elseif ($id == 2):$good = Good::get()->where('id', '2');
+//            elseif ($id == 3):$good = Good::get()->where('id', '3');
+//            elseif ($id == 4):$good = Good::get()->where('id', '4');
+//            elseif ($id == 5):$good = Good::get()->where('id', '5');
+//            elseif ($id == 6):$good = Good::get()->where('id', '6');
+//            elseif ($id == 7):$good = Good::get()->where('id', '7');
+//            elseif ($id == 8):$good = Good::get()->where('id', '8');
+//            elseif ($id == 9): $good = Good::get()->where('id', '9');
+//            elseif ($id == 10):$good = Good::get()->where('id', '10');
+//            elseif ($id == 11):$good = Good::get()->where('id', '11');
+//            elseif ($id == 12):$good = Good::get()->where('id', '12');
+//            elseif ($id == 13):$good = Good::get()->where('id', '13');
+//            elseif ($id == 14):$good = Good::get()->where('id', '14');
+//            elseif ($id == 15):$good = Good::get()->where('id', '15');
+//            endif;
 
-            if ($HTTP_GET_VARS == 1):$good = Good::get()->where('id', '1');
-            elseif ($HTTP_GET_VARS == 2):$good = Good::get()->where('id', '2');
-            elseif ($HTTP_GET_VARS == 3):$good = Good::get()->where('id', '3');
-            elseif ($HTTP_GET_VARS == 4):$good = Good::get()->where('id', '4');
-            elseif ($HTTP_GET_VARS == 5):$good = Good::get()->where('id', '5');
-            elseif ($HTTP_GET_VARS == 6):$good = Good::get()->where('id', '6');
-            elseif ($HTTP_GET_VARS == 7):$good = Good::get()->where('id', '7');
-            elseif ($HTTP_GET_VARS == 8):$good = Good::get()->where('id', '8');
-            elseif ($HTTP_GET_VARS == 9): $good = Good::get()->where('id', '9');
-            elseif ($HTTP_GET_VARS == 10):$good = Good::get()->where('id', '10');
-            elseif ($HTTP_GET_VARS == 11):$good = Good::get()->where('id', '11');
-            elseif ($HTTP_GET_VARS == 12):$good = Good::get()->where('id', '12');
-            elseif ($HTTP_GET_VARS == 13):$good = Good::get()->where('id', '13');
-            elseif ($HTTP_GET_VARS == 14):$good = Good::get()->where('id', '14');
-            elseif ($HTTP_GET_VARS == 15):$good = Good::get()->where('id', '15');
-            endif;
+            $good = Good::get()->where('id', $id);
+            //dd($good);
 
             $data = [
-                'title' => 'Товар-'.$HTTP_GET_VARS,
+                'title' => 'Товар-'.$id,
                 'category' => $category,
                 'good' => $good
             ];

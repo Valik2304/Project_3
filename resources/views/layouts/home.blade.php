@@ -17,6 +17,7 @@
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="js/jqueryAjax.js"></script>
 
 </head><!--/head-->
 
@@ -43,7 +44,7 @@
         </div>
     </div>
 </section>
-
+<br>
 <footer id="footer"><!--Footer-->
     <div class="footer-bottom">
         <div class="container">
@@ -53,6 +54,7 @@
             </div>
         </div>
     </div>
+
 </footer><!--/Footer-->
 
 

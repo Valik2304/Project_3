@@ -16,6 +16,24 @@ class New_user extends Model
 
     }
 
+    public  function authorization($input, $New_Users){
+
+        $input_password = md5($input['Password'] .'ugr7erhgfhcg7we');
+
+
+        foreach ($New_Users as $v) {
+
+            if ($input_password == $v['password'] and $input['Name'] == $v['name']):
+                return redirect()->route('home')->with('status', 'Ви успішно авторизувались!');
+
+
+//            elseif ($input_password != $v['password'] or $input['Name'] != $v['name']):
+//                return redirect()->route('account')->with('status', 'Такий користувач не знайдений! Спробуйте знову!');
+
+            endif;
+        }
+    }
+
 
     /**
      * Get the relationships for the entity.

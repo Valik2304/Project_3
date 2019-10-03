@@ -2,10 +2,75 @@
 
  $('#sl2').slider();
 
- // $('.add-to-cart').on('click', function (e) {
-	//  e.preventDefault();
-	//  var id = $(this).data('id')
- // })
+
+ // function clearCart(){
+	//  $.ajax({
+	// 	 url: '/basket',
+	// 	 type: 'GET',
+	// 	 success: function (res) {
+	// 		 if (res){
+	// 			 alert('Товар видалено!')
+ //
+	// 		 }
+	// 		 if (!res) alert('ПОМИЛКА!');
+ //
+ //
+	// 	 },
+	// 	 error: function () {
+	// 		 alert('Error!!!');
+	// 	 }
+	//  });
+ // }
+function showCart(cart){
+	$('.body3').html(cart);
+	// $('.body3'). get(cart);
+}
+	// $('.del-item').on('click', function () {
+	// 	// alert('HELLO!');
+	// 	var id = $(this).data('id');
+	// 	// console.log(id);
+	// 	$.ajax({
+	// 		url: '/basketdeleteone',
+	// 		data: {id: id},
+	// 		type: 'GET',
+	// 		success: function (res) {
+	// 			// if (res){
+	// 			// 	alert('Товар видалено!')
+	// 			//
+	// 			// }
+	// 			showCart(res);
+	// 			if (!res) alert('ПОМИЛКА!');
+	//
+	//
+	// 		},
+	// 		error: function () {
+	// 			alert('Error!!!');
+	// 		}
+	// 	});
+	// });
+
+$('.add-to-cart').on('click', function (e) {
+		 e.preventDefault();
+		 var id = $(this).data('id');
+		 $.ajax({
+			 url: '/basket',
+			 data: {id: id},
+			 type: 'GET',
+			 success: function (res) {
+				 // if (res){
+					//  alert('Товар додано!')
+				 //
+				 // }
+				 showCart(res);alert('Товар додано!');
+			 	if (!res) alert('ПОМИЛКА!');
+
+
+			 },
+			 error: function () {
+				 alert('Error!!!');
+			 }
+		 });
+	 });
 
 	var RGBChange = function() {
 	  $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')

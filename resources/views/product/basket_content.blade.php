@@ -1,4 +1,3 @@
-{{--{{dd($_COOKIE['cart'][$go->id])}}--}}
 <section id="cart_items">
     <div class="container">
 
@@ -6,65 +5,98 @@
             <table class="table table-condensed">
                 <thead>
                 <tr class="cart_menu">
-                    <td class="image">Товар</td>
-                    <td class="description"></td>
-                    <td class="price">Ціна</td>
-                    <td class="quantity">Кількість</td>
+                    <th class="image">Товар</th>
+                    <th class="description">Назва</th>
+                    <th class="price">Вартість за од.</th>
+                    <th class="quantity">Кількість</th>
+                    <th class="price">Заг. сума</th>
+                    <th >Видалити</th>
 
-                    <td></td>
+
                 </tr>
                 </thead>
-                @if(isset($go))
-                    {{--@foreach($go as $v)--}}
-                        <tbody>
+
+                <div class="body3">
+                @if(isset($_SESSION['cart']) )
+                    {{--@foreach($go as $id)--}}
+                    {{--@foreach($_SESSION['cart'][$go->id] as $v)--}}
+                {{--ЩОБ ВИВОДИЛИСЬ ВСІ ТОВАРИ І ТОЧНА K-СТЬ КОЖНОГО , ТРЕБА ТYТ ПРОЙТИ В ЦИКЛІ ЗМІННУ ТОВАРУ, ЯКЩО БЕЗ ЦИКЛУ ТО ВИВЕДЕ 1 РАЗ
+                 ЦЕЙ ТОВАР--}}
+
+
+                    <tbody>
+                    @foreach($_SESSION['cart'] as $key => $value)
+
+                        @if($key == 'qs')
+                            @continue
+                        @endif
+
+
                         <tr>
                             <td class="cart_product">
-                                <a href=""><img src="{{ asset($_SESSION['cart'][$go->id]['image']) }}" width="115" height="130" alt=""></a>
+                               <img src="{{ asset($value['image']) }}" width="115" height="130" alt="">
                             </td>
-                            <td class="cart_description">
-                                <h4><a href="">{{$_SESSION['cart'][$go->id]['name']}}</a></h4>
 
+                            <td class="cart_description">
+                                <h4><p>{{$value['name']}}</p></h4>
                             </td>
+
                             <td class="cart_price">
-                                <p>{{$_SESSION['cart'][$go->id]['price']}}</p>
+                                <p>${{$value['price']}}</p>
                             </td>
+
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
 
-                                    <input class="cart_quantity_input" type="text" name="quantity" value="" autocomplete="off" size="2">
-
+                                    {{--<input class="cart_quantity_input" type="text" name="quantity" value="{{$value['qty']}}" autocomplete="off" size="2">--}}
+                                        <p>{{$value['qty']}}</p>
                                 </div>
                             </td>
 
+                            <td class="cart_price">
+                                <p>${{$value['sum']}}</p>
+                            </td>
+
                             <td class="cart_delete">
-                                <a class="cart_quantity_delete btn btn-danger" href="{{route('basket')}}"><i class="fa fa-times btn btn-danger"></i></a>
+                                {{--<h3><span data-id="{{$value['id']}}" class="glyphicon glyphicon-remove text-danger del-item" aria-hidden="true"></span></h3>--}}
+                                <a class="cart_quantity_delete btn btn-danger" href="{{route('basketdeleteone', array('id' => $value['id']))}}"><i class="fa fa-times btn btn-danger"></i></a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
+                        @endforeach
 
+                        {{--@endforeach--}}
+                        {{--@endforeach--}}
+                        <tr>
+
+                            <td>
+                                <h4 style="color: #2ca02c">Загальна кі-сть:</h4>
                             </td>
+
+                            <td style="color: #2ca02c"><h4>{{$_SESSION['cart']['qs']['qty']}}</h4></td>
+
                             <td class="cart_description">
-{{--                                <h4> Загальна сума:{{$_COOKIE['cart']['id']['sum']}}</h4>--}}
-                                <h4> Загальна сума:</h4>
+                                <h4 style="color: #2ca02c"> Загальна сума:</h4>
                             </td>
                             <td >
-                                <h4>$524</h4>
-                            </td>
-                            <td>
-                                <h4>Загальна кі-сть:{{$_SESSION['cart']['id']['qty']}}</h4>
+                                <h4 style="color:#2ca02c">${{$_SESSION['cart']['qs']['sum']}}</h4>
                             </td>
 
+                        {{--</tr>--}}
+                        {{--<tr>--}}
+
                             <td>
-                                <h4>
-                                    <a href="зробити можливість переходу на товари" class="btn btn-success">Продовжити покупки</a>
-                                    <a href="зробити можливість видалити весь товар з корзини" class="btn btn-danger">Очистити корзину</a>
-                                    <a href="зробити форму замовлення" class="btn btn-success">Замовити</a>
-                                </h4>
+                                <h5>
+                                    <a href="{{route('home')}}" class="btn btn-success">До покупок</a>
+                                    <a href="{{route('basketdelete')}}" class="btn btn-danger">Очистити</a>
+                                    {{--<button type="button" class="btn btn-danger" >Очистити</button>--}}
+                                    <a href="{{url('/orders')}}" class="btn btn-success">Замовити</a>
+                                </h5>
                             </td>
                         </tr>
                         </tbody>
-                    {{--@endforeach--}}
+                </div>
+
+
                 @endif
 
             </table>
